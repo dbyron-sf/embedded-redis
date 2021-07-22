@@ -14,32 +14,21 @@
  * limitations under the License.
  */
 
-buildscript {
-  repositories {
-    jcenter()
-    maven { url "http://spinnaker.bintray.com/gradle" }
-    maven { url "https://plugins.gradle.org/m2/" }
-  }
-  dependencies {
-    classpath 'com.netflix.spinnaker.gradle:spinnaker-gradle-project:4.0.0'
-  }
+plugins {
+  id 'io.spinnaker.project' version "$spinnakerGradleVersion" apply false
 }
+
+apply plugin: "io.spinnaker.project"
 
 description = "Redis embedded server for Java integration testing"
 group = "com.netflix.spinnaker.embedded-redis"
-apply plugin: 'spinnaker.project'
-apply plugin: 'java'
-
-spinnaker {
-  dependenciesVersion = "0.160.0"
-}
+apply plugin: 'java-library'
 
 dependencies {
-  testCompile spinnaker.dependency("junit")
-  testCompile spinnaker.dependency('groovy')
+  testImplementation "junit:junit:4.12"
 
-  testCompile 'commons-logging:commons-logging:1.1.1'
-  testCompile 'org.mockito:mockito-all:1.8.5'
-  testCompile "org.springframework.data:spring-data-redis:1.4.1.RELEASE"
-  testCompile spinnaker.dependency("jedis")
+  testImplementation 'commons-logging:commons-logging:1.1.1'
+  testImplementation 'org.mockito:mockito-all:1.8.5'
+  testImplementation "org.springframework.data:spring-data-redis:1.4.1.RELEASE"
+  testImplementation "redis.clients:jedis:2.9.0"
 }
