@@ -21,7 +21,7 @@ plugins {
 apply plugin: "io.spinnaker.project"
 
 description = "Redis embedded server for Java integration testing"
-group = "com.netflix.spinnaker.embedded-redis"
+group = "io.spinnaker.embedded-redis"
 apply plugin: 'java-library'
 
 dependencies {
